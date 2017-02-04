@@ -34,6 +34,6 @@ void Multimedia::setFileName(string f) {
 }
 
 void Multimedia::print(ostream &os) const {
-	os << "Name:" << this->getName() << endl
+	os << "Name:" << this->getName() << '\n'
 		<< "File name: " << this->getFileName() << endl;
 }

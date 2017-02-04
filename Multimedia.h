@@ -27,6 +27,8 @@ public:
 	void setFileName(string FileName);
 	// function: print object informations.
 	virtual void print(ostream &os) const;
+	// virtural function: play the object.
+	virtual void play() const = 0;
 };
 
 #endif // !MULTIMEDIA_H

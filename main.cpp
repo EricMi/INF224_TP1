@@ -1,9 +1,11 @@
-#define VERSION_BASE
+#define VERSION_BASIC
 
 #include <stdlib.h>
 #include <string>
 #include <iostream>
 #include "Multimedia.h"
+#include "Photo.h"
+#include "Video.h"
 using namespace std;
 
 // Test for base version (Question 3)
@@ -30,3 +32,21 @@ int main() {
     return 0;
 }
 #endif // VERSION_BASE
+
+// Test for class Photo and Video (Question 4)
+#ifdef VERSION_BASIC
+int main() {
+    Photo *p1 = new Photo("eiffel", "/home/mi/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440);
+    Video *v1 = new Video("JJ", "/home/mi/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312);
+
+    cout << "Test for class Photo:" << endl;
+    p1->print(cout);
+    p1->play();
+
+    cout << "Test for class Video:" << endl;
+    v1->print(cout);
+    v1->play();
+
+    return 0;
+}
+#endif
