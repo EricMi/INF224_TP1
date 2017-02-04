@@ -6,13 +6,13 @@ using namespace std;
 
 class Photo : public Multimedia {
 private:
-	int width;
-	int height;
+	int width = 0;
+	int height = 0;
 public:
 	// constructor
 	Photo(string n = "", string f = "", int w = 0, int h = 0) : Multimedia(n, f) {
-		this->width = w;
-		this->height = h;
+		this->setWidth(w);
+		this->setHeight(h);
 	};
 
 	// function: get the width of photo.

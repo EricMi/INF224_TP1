@@ -1,4 +1,11 @@
-#define VERSION_POLYMORPHISM
+#define VERSION_FILM
+/* Version list:
+ * VERSION_BASE: base class Multimedia (Question 2&3)
+ * VERSION_BASIC: class Photo and Video (Question 4)
+ * VERSION_POLYMORPHISM: implement polymorphism (Question 5)
+ * VERSION_FILM: class Film
+ */
+
 
 #include <stdlib.h>
 #include <string>
@@ -6,6 +13,7 @@
 #include "Multimedia.h"
 #include "Photo.h"
 #include "Video.h"
+#include "Film.h"
 using namespace std;
 
 // Test for base class (Question 3)
@@ -68,5 +76,41 @@ int main() {
         myFiles[i]->print(cout);
         myFiles[i]->play();
     }
+
+    delete []myFiles;
+    myFiles = NULL;
+
+    return 0;
 }
 #endif // VERSION_POLYMORPHISM
+
+// Test for class Film (Question 6)
+#ifdef VERSION_FILM
+int main() {
+	int *durations = new int[4]{12, 50, 100, 150};
+	Film *f1 = new Film("Twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+
+    cout << "Test for class Film:" << endl;
+	f1->print(cout);
+    cout << "Test for function setDurations:" << endl;
+    durations[0] = 22;
+    durations[1] = 40;
+    f1->setDurations(durations, 4);
+    f1->print(cout);
+    cout << "Test for function getDurations and getNumDurations:" << endl;
+    int n = f1->getNumDurations();
+    const int *ptr = f1->getDurations();
+    for(int i = 0; i < n; i++) {
+        cout << ptr[i] << ' ';
+    }
+    cout << endl;
+    cout << "Now modify the original duration data:" << endl;
+	durations[3] = 25;
+    f1->print(cout);
+    cout << "Now destroy the original duration data:" << endl;
+    delete []durations;
+    f1->print(cout);
+
+    return 0;
+}
+#endif // VERSION_FILM

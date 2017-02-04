@@ -8,8 +8,8 @@ using namespace std;
 
 class Multimedia {
 private:
-	string name;
-	string fileName;
+	string name = "";
+	string fileName = "";
 
 public:
 	// Constructors

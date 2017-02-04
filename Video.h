@@ -7,11 +7,11 @@ using namespace std;
 
 class Video : public Multimedia {
 private:
-	int duration;
+	int duration = 0;
 public:
 	// constructor
 	Video(string n = "", string f = "", int d = 0) : Multimedia(n, f) {
-		this->duration = d;
+		this->setDuration(d);
 	};
 
 	// function: get the duration of video.

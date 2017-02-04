@@ -2,19 +2,19 @@
 using namespace std;
 
 Multimedia::Multimedia() {
-	this->name = "";
-	this->fileName = "";
+	this->setName("");
+	this->setFileName("");
 }
 
 Multimedia::Multimedia(string n, string f) {
-	this->name = n;
-	this->fileName = f;
+	this->setName(n);
+	this->setFileName(f);
 }
 
 Multimedia::~Multimedia() {
 	cout << "Object destructed: " << this->name << '\n';
-	this->name = "";
-	this->fileName = "";
+	this->setName("");
+	this->setFileName("");
 }
 
 string Multimedia::getName() const {
