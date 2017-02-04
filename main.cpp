@@ -1,9 +1,10 @@
-#define VERSION_FILM
+#define VERSION_DESTRUCTION
 /* Version list:
  * VERSION_BASE: base class Multimedia (Question 2&3)
  * VERSION_BASIC: class Photo and Video (Question 4)
  * VERSION_POLYMORPHISM: implement polymorphism (Question 5)
- * VERSION_FILM: class Film
+ * VERSION_FILM: class Film (Question 6)
+ * VERSION_DESTRUCTION: Deal with the memory leak and copy issues (Question 7)
  */
 
 
@@ -38,6 +39,11 @@ int main() {
     cout << m2->getName() << endl;
     cout << m2->getFileName() << endl;
 
+    delete m1;
+    m1 = NULL;
+    delete m2;
+    m2 = NULL;
+
     return 0;
 }
 #endif // VERSION_BASE
@@ -55,6 +61,11 @@ int main() {
     cout << "Test for class Video:" << endl;
     v1->print(cout);
     v1->play();
+
+    delete p1;
+    p1 = NULL;
+    delete v1;
+    v1 = NULL;
 
     return 0;
 }
@@ -77,6 +88,10 @@ int main() {
         myFiles[i]->play();
     }
 
+    for(int i = 0; i < count; i++) {
+        delete myFiles[i];
+        myFiles[i] = NULL;
+    }
     delete []myFiles;
     myFiles = NULL;
 
@@ -109,8 +124,37 @@ int main() {
     f1->print(cout);
     cout << "Now destroy the original duration data:" << endl;
     delete []durations;
+    durations = NULL;
     f1->print(cout);
+
+    delete f1;
+    f1 = NULL;
 
     return 0;
 }
 #endif // VERSION_FILM
+
+// Test for the memory leak and copy issues (Question 7)
+#ifdef VERSION_DESTRUCTION
+int main() {
+	int *durations = new int[4]{12, 50, 100, 150};
+	Film *f1 = new Film("Twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+
+    Film f2(*f1);
+    Film *f3 = new Film();
+    *f3 = *f1;
+
+    cout << "Test for the memory leak and copy issues:" << endl;
+    cout << "Film1:" << endl;
+    f1->print(cout);
+    cout << "Film2(created by copy):" << endl;
+    f2.print(cout);
+    cout << "Film3(assign by operator '='):" << endl;
+    f3->print(cout);
+
+    delete f1;
+    f1 = NULL;
+    delete f3;
+    f3 = NULL;
+}
+#endif // VERSION_DESTRUCTION

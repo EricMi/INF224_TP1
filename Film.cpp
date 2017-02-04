@@ -42,3 +42,45 @@ void Film::print(ostream &os) const {
         os << "This film doesn't have duration data!" << endl;
     }
 }
+
+Film::~Film() {
+    delete []this->arrDurations;
+    this->arrDurations = NULL;
+}
+
+Film::Film(const Film& from) : Video(from) {
+    const int *ptr = from.getDurations();
+    numDurations = from.getNumDurations();
+    
+    if(ptr) {
+        arrDurations = new int[numDurations];
+        for(int i = 0; i < numDurations; i++) {
+            arrDurations[i] = ptr[i];
+        }
+    } else {
+        arrDurations = NULL;
+        numDurations = 0;
+    }
+}
+
+Film& Film::operator=(const Film& from) {
+    Video::operator=(from);
+
+    const int *ptr = from.getDurations();
+    numDurations = from.getNumDurations();
+
+    if(arrDurations) {
+        delete []arrDurations;
+        arrDurations = NULL;
+    }
+    if(ptr) {
+        arrDurations = new int[numDurations];
+        for(int i = 0; i < numDurations; i++) {
+            arrDurations[i] = ptr[i];
+        }
+    } else {
+        arrDurations = NULL;
+        numDurations = 0;
+    }
+    return *this;
+}

@@ -16,7 +16,7 @@ public:
 	Multimedia();
 	Multimedia(string name, string fileName);
 	// Destructor
-	~Multimedia();
+	virtual ~Multimedia();
 	// function: get name of object.
 	string getName() const;
 	// function: set name of object.
@@ -28,7 +28,9 @@ public:
 	// function: print object informations.
 	virtual void print(ostream &os) const;
 	// virtural function: play the object.
+	#ifndef VERSION_BASE
 	virtual void play() const = 0;
+	#endif
 };
 
 #endif // !MULTIMEDIA_H

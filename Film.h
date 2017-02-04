@@ -19,6 +19,12 @@ public:
     int getNumDurations() const;
     // function: get number of durations
     void print(ostream &os) const;
+    // Destructor
+    ~Film();
+    // Constructor by copy
+    Film(const Film& from);
+    // overload operator '='
+    Film& operator=(const Film& from);
 };
 
 #endif // !FILM_H
