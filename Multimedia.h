@@ -12,13 +12,20 @@ private:
 	string fileName;
 
 public:
+	// Constructors
 	Multimedia();
 	Multimedia(string name, string fileName);
+	// Destructor
 	~Multimedia();
+	// function: get name of object.
 	string getName() const;
+	// function: set name of object.
 	void setName(string name);
+	// function: get file name.
 	string getFileName() const;
+	// function: set file name.
 	void setFileName(string FileName);
+	// function: print object informations.
 	virtual void print(ostream &os) const;
 };
 
