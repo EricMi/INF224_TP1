@@ -100,12 +100,14 @@ bool MyBase::processRequest(TCPConnection& cnx, const string& request, string& r
     req >> command;
 
     if(command.compare("PRINT") == 0) {
+        TCPLock lock(cnx);
         string name;
         req >> name;
         this->print(name, res);
         response = res.str();
         eraseNewline(response);
     } else if(command.compare("PLAY") == 0) {
+        TCPLock lock(cnx);
         string name;
         req >> name;
         this->play(name);
