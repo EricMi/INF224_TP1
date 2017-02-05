@@ -7,16 +7,15 @@
 using namespace std;
 
 class Multimedia {
+	friend class MyBase;
+	friend class Group;
 private:
 	string name = "";
 	string fileName = "";
-
-public:
+protected:
 	// Constructors
 	Multimedia();
 	Multimedia(string name, string fileName);
-	// Destructor
-	virtual ~Multimedia();
 	// function: get name of object.
 	string getName() const;
 	// function: set name of object.
@@ -31,6 +30,9 @@ public:
 	#ifndef VERSION_BASE
 	virtual void play() const = 0;
 	#endif
+public:
+	// Destructor
+	virtual ~Multimedia();
 };
 
 #endif // !MULTIMEDIA_H

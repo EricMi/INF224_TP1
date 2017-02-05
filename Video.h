@@ -6,9 +6,11 @@
 using namespace std;
 
 class Video : public Multimedia {
+	friend class MyBase;
+	friend class Group;
 private:
 	int duration = 0;
-public:
+protected:
 	// constructor
 	Video(string n = "", string f = "", int d = 0) : Multimedia(n, f) {
 		this->setDuration(d);

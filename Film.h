@@ -5,10 +5,12 @@
 using namespace std;
 
 class Film : public Video {
+    friend class MyBase;
+    friend class Group;
 private:
     int *arrDurations = NULL;
     int numDurations = 0;
-public:
+protected:
     // Constructor
     Film(string name = "", string fileName = "", int duration = 0, const int *ptrDurations = NULL, int numDurations = 0);
     // function: set durations
@@ -19,12 +21,13 @@ public:
     int getNumDurations() const;
     // function: get number of durations
     void print(ostream &os) const;
-    // Destructor
-    ~Film();
     // Constructor by copy
     Film(const Film& from);
     // overload operator '='
     Film& operator=(const Film& from);
+public:
+    // Destructor
+    ~Film();
 };
 
 #endif // !FILM_H

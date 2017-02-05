@@ -10,9 +10,10 @@ typedef shared_ptr<Multimedia> MultimediaPtr;
 
 //class Group : public list<Multimedia*> {
 class Group : public list<MultimediaPtr> {
+    friend class MyBase;
 private:
     string name = "";
-public:
+protected:
     // Constructor
     Group(string n = "") : list() {
         this->name = n;

@@ -5,10 +5,12 @@
 using namespace std;
 
 class Photo : public Multimedia {
+	friend class MyBase;
+	friend class Group;
 private:
 	int width = 0;
 	int height = 0;
-public:
+protected:
 	// constructor
 	Photo(string n = "", string f = "", int w = 0, int h = 0) : Multimedia(n, f) {
 		this->setWidth(w);
