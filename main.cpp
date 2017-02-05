@@ -1,14 +1,14 @@
-#define VERSION_MEMORY_MGMT
+#define VERSION_MEDIABASE
 /* Version list:
  * VERSION_BASE: base class Multimedia (Question 2&3)
  * VERSION_BASIC: class Photo and Video (Question 4)
  * VERSION_POLYMORPHISM: implement polymorphism (Question 5)
  * VERSION_FILM: class Film (Question 6)
  * VERSION_DESTRUCTION: Deal with the memory leak and copy issues (Question 7)
- * VERSION_GROUP: class Group (Question 8)
+ * VERSION_GROUP: class Group (Question 8) (!!!no longer available!!!)
  * VERSION_MEMORY_MGMT: test of memory management by smart pointer (Question 9)
+ * VERSION_MEDIABASE: implementation of class MyBase (Question 10)
  */
-
 
 #include <stdlib.h>
 #include <string>
@@ -18,6 +18,7 @@
 #include "Video.h"
 #include "Film.h"
 #include "Group.h"
+#include "MyBase.h"
 using namespace std;
 
 // Test for base class (Question 3)
@@ -143,6 +144,8 @@ int main() {
     cout << "Test for the memory leak and copy issues:" << endl;
 	int *durations = new int[4]{12, 50, 100, 150};
 	Film *f1 = new Film("Twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+    delete []durations;
+    durations = NULL;
 
     Film f2(*f1);
     Film *f3 = new Film();
@@ -177,6 +180,8 @@ int main() {
     myFiles[count++] = new Video("jj", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312);
 	int *durations = new int[4]{12, 50, 100, 150};
 	myFiles[count++] = new Film("Twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+    delete []durations;
+    durations = NULL;
 
 	Group *g1 = new Group("myPhoto");
 	Group *g2 = new Group("myVideo");
@@ -228,6 +233,8 @@ int main() {
     myFiles[count++] = MultimediaPtr(new Video("jj", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312));
 	int *durations = new int[4]{12, 50, 100, 150};
 	myFiles[count++] = MultimediaPtr(new Film("Twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4));
+    delete []durations;
+    durations = NULL;
 
 	Group *g1 = new Group("myPhoto");
 	Group *g2 = new Group("myVideo");
@@ -273,3 +280,50 @@ int main() {
     return 0;
 }
 #endif // VERSION_MEMORY_MGMT
+
+// Test for class MyBase
+#ifdef VERSION_MEDIABASE
+int main() {
+    cout << "Test for MyBase:" << endl;
+    cout << "Creating test data base..." << endl;
+    MyBase *myBase = new MyBase();
+    myBase->createPhoto("eiffel", "~/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440);
+    myBase->createPhoto("telecom", "~/workspace/INF224_TP1/files/logo.png", 113, 113);
+    myBase->createVideo("rose", "~/workspace/INF224_TP1/files/TheRose-Westlife.mp4", 212);
+    myBase->createVideo("jj", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312);
+    int *durations = new int[4]{12, 50, 100, 150};
+    myBase->createFilm("twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+    delete []durations;
+    durations = NULL;
+
+    myBase->createGroup("myPhoto");
+    myBase->createGroup("myVideo");
+    myBase->createGroup("myMedia");
+
+    myBase->addToGroup("eiffel", "myPhoto");
+    myBase->addToGroup("telecom", "myPhoto");
+    myBase->addToGroup("rose", "myVideo");
+    myBase->addToGroup("jj", "myVideo");
+    myBase->addToGroup("eiffel", "myMedia");
+    myBase->addToGroup("telecom", "myMedia");
+    myBase->addToGroup("rose", "myMedia");
+    myBase->addToGroup("jj", "myMedia");
+    myBase->addToGroup("twilight", "myMedia");
+
+    cout << "Test for function 'print'" << endl;
+    myBase->print("eiffel");
+    myBase->print("myPhoto");
+
+    cout << "Test for function 'play'" << endl;
+    myBase->play("rose");
+
+    cout << "Test for function 'remove' (group):" << endl;
+    myBase->remove("myPhoto");
+    cout << "Test for function 'remove' (multimedia):" << endl;
+    myBase->remove("eiffel");
+
+    cout << "Destroy MyBase:" << endl;
+    delete myBase;
+    return 0;
+}
+#endif // VERSION_MEDIABASE
