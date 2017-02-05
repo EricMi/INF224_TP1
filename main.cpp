@@ -1,4 +1,4 @@
-#define VERSION_MEDIABASE
+#define VERSION_SERVER
 /* Version list:
  * VERSION_BASE: base class Multimedia (Question 2&3)
  * VERSION_BASIC: class Photo and Video (Question 4)
@@ -8,6 +8,7 @@
  * VERSION_GROUP: class Group (Question 8) (!!!no longer available!!!)
  * VERSION_MEMORY_MGMT: test of memory management by smart pointer (Question 9)
  * VERSION_MEDIABASE: implementation of class MyBase (Question 10)
+ * VERSION_SERVER: transform MyBase class as a server (Question 11)
  */
 
 #include <stdlib.h>
@@ -19,7 +20,12 @@
 #include "Film.h"
 #include "Group.h"
 #include "MyBase.h"
+#include <sstream>
+#include "tcpserver.h"
 using namespace std;
+using namespace cppu;
+
+const int PORT = 3331;
 
 // Test for base class (Question 3)
 #ifdef VERSION_BASE
@@ -50,7 +56,7 @@ int main() {
 
     return 0;
 }
-#endif // VERSION_BASE
+#endif // !VERSION_BASE
 
 // Test for class Photo and Video (Question 4)
 #ifdef VERSION_BASIC
@@ -73,7 +79,7 @@ int main() {
 
     return 0;
 }
-#endif // VERSION_BASIC
+#endif // !VERSION_BASIC
 
 // Test for implementation of polymorphism (Question 5)
 #ifdef VERSION_POLYMORPHISM
@@ -101,7 +107,7 @@ int main() {
 
     return 0;
 }
-#endif // VERSION_POLYMORPHISM
+#endif // !VERSION_POLYMORPHISM
 
 // Test for class Film (Question 6)
 #ifdef VERSION_FILM
@@ -136,7 +142,7 @@ int main() {
 
     return 0;
 }
-#endif // VERSION_FILM
+#endif // !VERSION_FILM
 
 // Test for the memory leak and copy issues (Question 7)
 #ifdef VERSION_DESTRUCTION
@@ -165,7 +171,7 @@ int main() {
 
     return 0;
 }
-#endif // VERSION_DESTRUCTION
+#endif // !VERSION_DESTRUCTION
 
 // Test for class Group (Question 8)
 #ifdef VERSION_GROUP
@@ -218,7 +224,7 @@ int main() {
 
     return 0;
 }
-#endif // VERSION_GROUP
+#endif // !VERSION_GROUP
 
 // Test for memory management (Question 9)
 #ifdef VERSION_MEMORY_MGMT
@@ -279,14 +285,14 @@ int main() {
 
     return 0;
 }
-#endif // VERSION_MEMORY_MGMT
+#endif // !VERSION_MEMORY_MGMT
 
 // Test for class MyBase
 #ifdef VERSION_MEDIABASE
 int main() {
     cout << "Test for MyBase:" << endl;
     cout << "Creating test data base..." << endl;
-    MyBase *myBase = new MyBase();
+    shared_ptr<MyBase> myBase = new MyBase();
     myBase->createPhoto("eiffel", "~/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440);
     myBase->createPhoto("telecom", "~/workspace/INF224_TP1/files/logo.png", 113, 113);
     myBase->createVideo("rose", "~/workspace/INF224_TP1/files/TheRose-Westlife.mp4", 212);
@@ -324,6 +330,57 @@ int main() {
 
     cout << "Destroy MyBase:" << endl;
     delete myBase;
+
     return 0;
 }
-#endif // VERSION_MEDIABASE
+#endif // !VERSION_MEDIABASE
+
+// Test for MyBase server.
+#ifdef VERSION_SERVER
+int main(int argc, char* argv[]) {
+    cout << "Test for MyBase server:" << endl;
+    // cree le TCPServer
+    shared_ptr<TCPServer> server(new TCPServer());
+    // cree l'objet qui gère les données
+    shared_ptr<MyBase> base(new MyBase());
+
+    cout << "Creating test data base..." << endl;
+    base->createPhoto("eiffel", "~/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440);
+    base->createPhoto("telecom", "~/workspace/INF224_TP1/files/logo.png", 113, 113);
+    base->createVideo("rose", "~/workspace/INF224_TP1/files/TheRose-Westlife.mp4", 212);
+    base->createVideo("jj", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312);
+    int *durations = new int[4]{12, 50, 100, 150};
+    base->createFilm("twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+    delete []durations;
+    durations = NULL;
+
+    base->createGroup("myPhoto");
+    base->createGroup("myVideo");
+    base->createGroup("myMedia");
+
+    base->addToGroup("eiffel", "myPhoto");
+    base->addToGroup("telecom", "myPhoto");
+    base->addToGroup("rose", "myVideo");
+    base->addToGroup("jj", "myVideo");
+    base->addToGroup("eiffel", "myMedia");
+    base->addToGroup("telecom", "myMedia");
+    base->addToGroup("rose", "myMedia");
+    base->addToGroup("jj", "myMedia");
+    base->addToGroup("twilight", "myMedia");
+
+    // le serveur appelera cette méthode chaque fois qu'il y a une requête
+    server->setCallback(*base, &MyBase::processRequest);
+
+    // lance la boucle infinie du serveur
+    cout << "Starting Server on port " << PORT << endl;
+    int status = server->run(PORT);
+
+    // en cas d'erreur
+    if (status < 0) {
+        cerr << "Could not start Server on port " << PORT << endl;
+        return 1;
+    }
+
+  return 0;
+}
+#endif // !VERSION_SERVER

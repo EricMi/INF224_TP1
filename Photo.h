@@ -39,10 +39,9 @@ protected:
 
 	// function: print the information of photo.
 	void print(ostream &os) const {
-		os << "Name:" << this->getName() << '\n'
-			<< "File name: "<< this->getFileName() << '\n'
-			<< "Width: " << this->getWidth() << '\n'
-			<< "Height: " << this->getHeight() << endl;
+		this->Multimedia::print(os);
+		os << "Width:" << this->getWidth() << '\n'
+			<< "Height:" << this->getHeight() << endl;
 	};
 
 	// function: play the photo.

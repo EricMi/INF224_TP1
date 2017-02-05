@@ -33,13 +33,13 @@ int Film::getNumDurations() const {
 void Film::print(ostream &os) const {
     this->Video::print(os);
     if(this->arrDurations) {
-        os << "Durations: ";
-        for(int i = 0; i < this->numDurations; i++) {
-            os << this->arrDurations[i] << ' ';
+        os << "Durations:";
+        for(int i = 0; i < this->numDurations-1; i++) {
+            os << this->arrDurations[i] << '-';
         }
-    os << endl;
+        os << this->arrDurations[this->numDurations-1] << endl;
     } else {
-        os << "This film doesn't have duration data!" << endl;
+        os << "Durations:NULL" << endl;
     }
 }
 
@@ -51,7 +51,7 @@ Film::~Film() {
 Film::Film(const Film& from) : Video(from) {
     const int *ptr = from.getDurations();
     numDurations = from.getNumDurations();
-    
+
     if(ptr) {
         arrDurations = new int[numDurations];
         for(int i = 0; i < numDurations; i++) {

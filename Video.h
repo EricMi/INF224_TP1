@@ -28,9 +28,8 @@ protected:
 
 	// function: print the information of video.
 	void print(ostream &os) const {
-		os << "Name:" << this->getName() << '\n'
-			<< "File name: " << this->getFileName() << '\n'
-			<< "Duration: " << this->getDuration() << endl;
+		this->Multimedia::print(os);
+		os << "Duration:" << this->getDuration() << endl;
 	};
 
 	// function: play the video.

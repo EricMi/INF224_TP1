@@ -26,7 +26,7 @@ protected:
 
     // function: print information of every member of the group
     void print(ostream &os) const {
-        os << "Group name: " << this->name << endl;
+        os << "Group:" << this->name << endl;
         for(Group::const_iterator it = this->begin(); it != this->end(); it++)
             (*it)->print(os);
     };

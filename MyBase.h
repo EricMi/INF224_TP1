@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <memory>
 #include <map>
 #include "Multimedia.h"
@@ -11,7 +12,9 @@
 #include "Video.h"
 #include "Film.h"
 #include "Group.h"
+#include "tcpserver.h"
 using namespace std;
+using namespace cppu;
 
 typedef shared_ptr<Group> GroupPtr;
 typedef map<string, MultimediaPtr> MultimediaMap;
@@ -37,11 +40,13 @@ public:
     // function: add a mulimedia object to a group
     void addToGroup(string mName, string pName);
     // function: print the information of multimedia object or group in terminal by name
-    void print(string name) const;
+    void print(string name, ostream &os = cout) const;
     // function: play a multimedia object by name
     void play(string name) const;
     // function: delete a multimedia object or group by name
     void remove(string name);
+    // function: process the request from cliend
+    bool processRequest(TCPConnection& cnx, const string& request, string& response);
 };
 
 #endif // !MYBASE_H

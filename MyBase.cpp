@@ -41,11 +41,11 @@ void MyBase::addToGroup(string mName, string pName) {
     this->group.find(pName)->second->push_back(this->multimedia.find(mName)->second);
 }
 
-void MyBase::print(string name) const {
+void MyBase::print(string name, ostream &os) const {
     if(this->multimedia.find(name) != this->multimedia.end()) {
-        this->multimedia.find(name)->second->print(cout);
+        this->multimedia.find(name)->second->print(os);
     } else if(this->group.find(name) != this->group.end()) {
-        this->group.find(name)->second->print(cout);
+        this->group.find(name)->second->print(os);
     } else {
         cerr << "--->Error: No multimedia object or group with name \"" + name + "\" exist!" << endl;
     }
@@ -76,4 +76,43 @@ void MyBase::remove(string name) {
     } else {
         cerr << "--->Error: No multimedia object or group with name \"" + name + "\" exist!" << endl;
     }
+}
+
+void eraseNewline(string &str) {
+    string::size_type pos = 0; // Must initialize
+    while((pos = str.find("\n", pos)) != string::npos) {
+        str.replace(pos, 1, " ");
+    }
+    pos = 0; // Must initialize
+    while((pos = str.find("\r", pos)) != string::npos) {
+        str.replace(pos, 1, " ");
+    }
+}
+
+bool MyBase::processRequest(TCPConnection& cnx, const string& request, string& response) {
+    cerr << "\nRequest: '" << request << "'" << endl;
+
+    stringstream req;
+    stringstream res;
+    string command;
+
+    req << request;
+    req >> command;
+
+    if(command.compare("PRINT") == 0) {
+        string name;
+        req >> name;
+        this->print(name, res);
+        response = res.str();
+        eraseNewline(response);
+    } else if(command.compare("PLAY") == 0) {
+        string name;
+        req >> name;
+        this->play(name);
+        response = "OK: '" + name +"' is now playing.";
+    }
+
+    cerr << "Response: " << response << endl;
+
+    return true;
 }
