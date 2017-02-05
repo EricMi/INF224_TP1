@@ -20,7 +20,7 @@ protected:
     // function: get number of durations
     int getNumDurations() const;
     // function: get number of durations
-    void print(ostream &os) const;
+    void print(ostream &os) const override;
     // Constructor by copy
     Film(const Film& from);
     // overload operator '='

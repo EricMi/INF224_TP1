@@ -38,14 +38,14 @@ protected:
 	};
 
 	// function: print the information of photo.
-	void print(ostream &os) const {
+	void print(ostream &os) const override {
 		this->Multimedia::print(os);
 		os << "Width:" << this->getWidth() << '\n'
 			<< "Height:" << this->getHeight() << endl;
 	};
 
 	// function: play the photo.
-	void play() const {
+	void play() const override {
 		string command = "eog " + this->getFileName() + " &";
 		system(command.c_str());
 	};

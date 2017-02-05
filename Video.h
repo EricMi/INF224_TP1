@@ -27,13 +27,13 @@ protected:
 	};
 
 	// function: print the information of video.
-	void print(ostream &os) const {
+	void print(ostream &os) const override {
 		this->Multimedia::print(os);
 		os << "Duration:" << this->getDuration() << endl;
 	};
 
 	// function: play the video.
-	void play() const {
+	void play() const override {
 		string command = "xdg-open " + this->getFileName() + " &";
 		system(command.c_str());
 	};
