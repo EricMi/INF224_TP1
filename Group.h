@@ -2,10 +2,14 @@
 #define GROUP_H
 
 #include <list>
+#include <memory>
 #include "Multimedia.h"
 using namespace std;
 
-class Group : public list<Multimedia*> {
+typedef shared_ptr<Multimedia> MultimediaPtr;
+
+//class Group : public list<Multimedia*> {
+class Group : public list<MultimediaPtr> {
 private:
     string name = "";
 public:
@@ -13,7 +17,7 @@ public:
     Group(string n = "") : list() {
         this->name = n;
     };
-    
+
     // function: get name of group
     string getName() const {
         return this->name;

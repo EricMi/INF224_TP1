@@ -1,4 +1,4 @@
-#define VERSION_GROUP
+#define VERSION_MEMORY_MGMT
 /* Version list:
  * VERSION_BASE: base class Multimedia (Question 2&3)
  * VERSION_BASIC: class Photo and Video (Question 4)
@@ -198,6 +198,7 @@ int main() {
 
 	cout << "Now delete group 'myPhoto':" << endl;
     delete g1;
+    g1 = NULL;
 	g3->print(cout);
 
     delete g2;
@@ -213,3 +214,62 @@ int main() {
     return 0;
 }
 #endif // VERSION_GROUP
+
+// Test for memory management (Question 9)
+#ifdef VERSION_MEMORY_MGMT
+int main() {
+    cout << "Test for memory management by using shared_ptr:" << endl;
+    int count = 0;
+    MultimediaPtr *myFiles = new MultimediaPtr[5];
+
+    myFiles[count++] = MultimediaPtr(new Photo("eiffel", "~/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440));
+    myFiles[count++] = MultimediaPtr(new Photo("telecom", "~/workspace/INF224_TP1/files/logo.png", 113, 113));
+    myFiles[count++] = MultimediaPtr(new Video("rose", "~/workspace/INF224_TP1/files/TheRose-Westlife.mp4", 212));
+    myFiles[count++] = MultimediaPtr(new Video("jj", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312));
+	int *durations = new int[4]{12, 50, 100, 150};
+	myFiles[count++] = MultimediaPtr(new Film("Twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4));
+
+	Group *g1 = new Group("myPhoto");
+	Group *g2 = new Group("myVideo");
+	Group *g3 = new Group("myMedia");
+
+	g1->push_back(myFiles[0]);
+	g1->push_back(myFiles[1]);
+	g2->push_back(myFiles[2]);
+	g2->push_back(myFiles[3]);
+	g3->push_back(myFiles[0]);
+	g3->push_back(myFiles[1]);
+	g3->push_back(myFiles[2]);
+	g3->push_back(myFiles[3]);
+	g3->push_back(myFiles[4]);
+
+	g1->print(cout);
+	g2->print(cout);
+	g3->print(cout);
+
+    cout << "Reset all the 'MultimediaPtr' in main program:" << endl;
+    for(int i = 0; i < count; i++) {
+        myFiles[i].reset();
+    }
+
+    cout << "Copy the smart pointer of 'eiffel':" << endl;
+    MultimediaPtr m1 = g1->front();
+
+	cout << "Now delete 'eiffel' from group 'myPhoto' and 'myMedia':" << endl;
+    g1->remove(m1);
+    g3->remove(m1);
+
+    cout << "Now reset the smart pointer of 'eiffel':" << endl;
+    m1.reset();
+
+    cout << "Delete the groups:" << endl;
+    delete g1;
+    g1 = NULL;
+    delete g2;
+    g2 = NULL;
+    delete g3;
+    g3 = NULL;
+
+    return 0;
+}
+#endif // VERSION_MEMORY_MGMT
