@@ -1,6 +1,23 @@
 #include "MyBase.h"
 using namespace std;
 
+static const char alphanum[] =
+"0123456789"
+"!@#$%^&*"
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+"abcdefghijklmnopqrstuvwxyz";
+
+int stringLength = sizeof(alphanum) - 1;
+
+string getRandomName() {
+    string s = "";
+    int n = 6;
+    for(int i = 0; i < 6; i++) {
+        s += alphanum[rand() % stringLength];
+    }
+    return s;
+}
+
 MyBase::MyBase() {
 }
 
@@ -117,4 +134,64 @@ bool MyBase::processRequest(TCPConnection& cnx, const string& request, string& r
     cerr << "Response: " << response << endl;
 
     return true;
+}
+
+
+bool MyBase::save(const string &fileName) const {
+    ofstream f(fileName);
+    if(!f) {
+        cerr << "--->Error: Can't open file " << fileName << endl;
+        return false;
+    }
+
+    for(auto it : this->multimedia) {
+        f << it.second->className() << '\n';
+        it.second->write(f);
+    }
+
+    f.close();
+    return true;
+}
+
+bool MyBase::load(const string &fileName) {
+    ifstream f(fileName);
+    if(!f) {
+        cerr << "--->Error: Can't open file " << fileName << endl;
+    }
+
+    while(f) {
+        string className;
+        getline(f, className);
+        if(!f.eof()) {
+            MultimediaPtr mPtr = this->createMultimedia(className);
+            if(mPtr) {
+                mPtr->read(f);
+            } else if(f.fail()) {
+                this->remove(mPtr->getName());
+                cerr << "--->Error: Read error in " << fileName << endl;
+                return false;
+            }
+        }
+    }
+    f.close();
+    return true;
+}
+
+MultimediaPtr MyBase::createMultimedia(string className) {
+    if(className == "Photo") {
+        return this->createPhoto(getRandomName(), "", 0, 0);
+    } else if(className == "Video") {
+        return this->createVideo(getRandomName(), "", 0);
+    } else if(className == "Film") {
+        return this->createFilm(getRandomName(), "", 0, NULL, 0);
+    } else {
+        return NULL;
+    }
+}
+
+void MyBase::printAll(ostream &os) const {
+    for(auto it : this->multimedia) {
+        os << it.second->className() << '\n';
+        it.second->print(os);
+    }
 }

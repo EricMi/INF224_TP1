@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <sstream>
 #include <memory>
@@ -47,6 +48,14 @@ public:
     void remove(string name);
     // function: process the request from cliend
     bool processRequest(TCPConnection& cnx, const string& request, string& response);
+    // function: write MyBase into file in text format
+    bool save(const string &fileName) const;
+    // function: load MyBase from file in text format
+    bool load(const string &fileName);
+    // function: create multimedia object according to class name
+    MultimediaPtr createMultimedia(string className);
+    // function: print the information of all objects
+    void printAll(ostream &os = cout) const;
 };
 
 #endif // !MYBASE_H

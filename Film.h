@@ -25,6 +25,12 @@ protected:
     Film(const Film& from);
     // overload operator '='
     Film& operator=(const Film& from);
+    // virtual function: write object to ostream.
+    void write(ostream &os) const override;
+    // virtual function: read object from istream.
+    void read(istream &is) override;
+	// virtual function: return class name.
+	string className() const override;
 public:
     // Destructor
     ~Film();

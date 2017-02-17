@@ -37,3 +37,16 @@ void Multimedia::print(ostream &os) const {
 	os << "Name:" << this->getName() << '\n'
 		<< "File:" << this->getFileName() << endl;
 }
+
+void Multimedia::write(ostream &os) const {
+	os << this->getName() << '\n' << this->getFileName() << '\n';
+}
+
+void Multimedia::read(istream &is) {
+	getline(is, this->name);
+	getline(is, this->fileName);
+}
+
+string Multimedia::className() const {
+	return "Multimedia";
+}

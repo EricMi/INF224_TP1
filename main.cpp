@@ -1,4 +1,4 @@
-#define VERSION_SERVER
+#define VERSION_SERALISATION
 /* Version list:
  * VERSION_BASE: base class Multimedia (Question 2&3)
  * VERSION_BASIC: class Photo and Video (Question 4)
@@ -9,6 +9,7 @@
  * VERSION_MEMORY_MGMT: test of memory management by smart pointer (Question 9)
  * VERSION_MEDIABASE: implementation of class MyBase (Question 10)
  * VERSION_SERVER: transform MyBase class as a server (Question 11)
+ * VERSION_SERALISATION: save into and read from local file (Question 12)
  */
 
 #include <stdlib.h>
@@ -292,7 +293,7 @@ int main() {
 int main() {
     cout << "Test for MyBase:" << endl;
     cout << "Creating test data base..." << endl;
-    shared_ptr<MyBase> myBase = new MyBase();
+    shared_ptr<MyBase> myBase(new MyBase());
     myBase->createPhoto("eiffel", "~/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440);
     myBase->createPhoto("telecom", "~/workspace/INF224_TP1/files/logo.png", 113, 113);
     myBase->createVideo("rose", "~/workspace/INF224_TP1/files/TheRose-Westlife.mp4", 212);
@@ -384,3 +385,46 @@ int main(int argc, char* argv[]) {
   return 0;
 }
 #endif // !VERSION_SERVER
+
+// Test for file interaction
+#ifdef VERSION_SERALISATION
+int main() {
+    cout << "Test for file interaction:" << endl;
+    cout << "Creating test data base..." << endl;
+    shared_ptr<MyBase> myBase(new MyBase());
+    myBase->createPhoto("eiffel", "~/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440);
+    myBase->createPhoto("telecom", "~/workspace/INF224_TP1/files/logo.png", 113, 113);
+    myBase->createVideo("rose", "~/workspace/INF224_TP1/files/TheRose-Westlife.mp4", 212);
+    myBase->createVideo("jj", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312);
+    int *durations = new int[4]{12, 50, 100, 150};
+    myBase->createFilm("twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+    delete []durations;
+    durations = NULL;
+
+    myBase->createGroup("myPhoto");
+    myBase->createGroup("myVideo");
+    myBase->createGroup("myMedia");
+
+    myBase->addToGroup("eiffel", "myPhoto");
+    myBase->addToGroup("telecom", "myPhoto");
+    myBase->addToGroup("rose", "myVideo");
+    myBase->addToGroup("jj", "myVideo");
+    myBase->addToGroup("eiffel", "myMedia");
+    myBase->addToGroup("telecom", "myMedia");
+    myBase->addToGroup("rose", "myMedia");
+    myBase->addToGroup("jj", "myMedia");
+    myBase->addToGroup("twilight", "myMedia");
+
+    myBase->save("media.dt");
+    cout << "--->Base1:";
+    myBase->printAll();
+
+    shared_ptr<MyBase> myBase2(new MyBase());
+    if(myBase2->load("media.dt")) {
+        cout << "--->Base2:";
+        myBase2->printAll();    
+    };
+
+    return 0;
+}
+#endif // !VERSION_MEDIABASE

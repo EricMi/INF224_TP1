@@ -84,3 +84,31 @@ Film& Film::operator=(const Film& from) {
     }
     return *this;
 }
+
+void Film::write(ostream &os) const {
+    Video::write(os);
+    os << this->getNumDurations() << '\n';
+    for(int i = 0; i < this->numDurations; i++) {
+        os << this->arrDurations[i] << '\n';
+    }
+}
+
+void Film::read(istream &is) {
+    this->Video::read(is);
+    string s;
+    getline(is, s);
+    cout << "read numD: " << s << endl;
+    int numD = stoi(s);
+    int *arrD = new int[numD];
+    for(int i = 0; i < numD; i++) {
+        getline(is, s);
+        arrD[i] = stoi(s);
+    };
+    this->setDurations(arrD, numD);
+    delete []arrD;
+}
+
+// virtual function: return class name.
+string Film::className() const {
+    return "Film";
+}

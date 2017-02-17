@@ -30,6 +30,12 @@ protected:
 	#ifndef VERSION_BASE
 	virtual void play() const = 0;
 	#endif
+	// virtual function: write object to ostream.
+	virtual void write(ostream &os) const;
+	// virtual function: read object from istream.
+	virtual void read(istream &is);
+	// virtual function: return class name.
+	virtual string className() const;
 public:
 	// Destructor
 	virtual ~Multimedia();

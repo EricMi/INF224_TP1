@@ -37,6 +37,25 @@ protected:
 		string command = "xdg-open " + this->getFileName() + " &";
 		system(command.c_str());
 	};
+
+	// virtual function: write object to ostream.
+	void write(ostream &os) const override {
+		Multimedia::write(os);
+		os << this->getDuration() << '\n';
+	};
+
+	// virtual function: read object from istream.
+	void read(istream &is) override {
+		this->Multimedia::read(is);
+		string s;
+		getline(is, s);
+		this->setDuration(stoi(s));
+	};
+
+	// virtual function: return class name.
+	string className() const override {
+		return "Video";
+	};
 };
 
 #endif // !VIDEO_H
