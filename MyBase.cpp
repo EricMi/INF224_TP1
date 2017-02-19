@@ -11,7 +11,6 @@ int stringLength = sizeof(alphanum) - 1;
 
 string getRandomName() {
     string s = "";
-    int n = 6;
     for(int i = 0; i < 6; i++) {
         s += alphanum[rand() % stringLength];
     }

@@ -1,4 +1,4 @@
-#define VERSION_SERALISATION
+#define VERSION_SERVER
 /* Version list:
  * VERSION_BASE: base class Multimedia (Question 2&3)
  * VERSION_BASIC: class Photo and Video (Question 4)
@@ -422,7 +422,7 @@ int main() {
     shared_ptr<MyBase> myBase2(new MyBase());
     if(myBase2->load("media.dt")) {
         cout << "--->Base2:";
-        myBase2->printAll();    
+        myBase2->printAll();
     };
 
     return 0;
