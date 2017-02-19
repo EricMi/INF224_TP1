@@ -43,7 +43,7 @@ public:
     // function: print the information of multimedia object or group in terminal by name
     void print(string name, ostream &os = cout) const;
     // function: play a multimedia object by name
-    void play(string name) const;
+    bool play(string name) const;
     // function: delete a multimedia object or group by name
     void remove(string name);
     // function: process the request from cliend

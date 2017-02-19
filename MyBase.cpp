@@ -63,15 +63,17 @@ void MyBase::print(string name, ostream &os) const {
     } else if(this->group.find(name) != this->group.end()) {
         this->group.find(name)->second->print(os);
     } else {
-        cerr << "--->Error: No multimedia object or group with name \"" + name + "\" exist!" << endl;
+        os << "--->Error: No multimedia object or group with name \"" + name + "\" exist!" << endl;
     }
 }
 
-void MyBase::play(string name) const {
+bool MyBase::play(string name) const {
     if(this->multimedia.find(name) != this->multimedia.end()) {
         this->multimedia.find(name)->second->play();
+        return true;
     } else {
         cerr << "--->Error: No multimedia object with name \"" + name + "\" exist for playing!\n" << endl;
+        return false;
     }
 }
 
@@ -126,8 +128,11 @@ bool MyBase::processRequest(TCPConnection& cnx, const string& request, string& r
         TCPLock lock(cnx);
         string name;
         req >> name;
-        this->play(name);
-        response = "OK: '" + name +"' is now playing.";
+        if(this->play(name)) {
+            response = "OK: '" + name +"' is now playing.";
+        } else {
+            response = "--->Error: couldn't find object: " + name + "!";
+        }
     }
 
     cerr << "Response: " << response << endl;
