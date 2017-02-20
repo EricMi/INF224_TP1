@@ -33,7 +33,7 @@ const int PORT = 3331;
 int main() {
     cout << "Test for base class:" << endl;
     Multimedia *m1 = new Multimedia();
-    Multimedia *m2 = new Multimedia("eiffel", "/home/mi/workspace/INF224_TP1/files/eiffel.jpg");
+    Multimedia *m2 = new Multimedia("eiffel", "files/eiffel.jpg");
 
     cout << "Multimedia object 1:" << endl;
     m1->print(cout);
@@ -46,7 +46,7 @@ int main() {
 
     cout << "Test for \"setters\" functions:" << endl;
     m2->setName("newEiffel");
-    m2->setFileName("mi/workspace/INF224_TP1/files/eiffel.jpg");
+    m2->setFileName("files/eiffel.jpg");
     cout << m2->getName() << endl;
     cout << m2->getFileName() << endl;
 
@@ -63,8 +63,8 @@ int main() {
 #ifdef VERSION_BASIC
 int main() {
     cout << "Test for class Photo:" << endl;
-    Photo *p1 = new Photo("eiffel", "/home/mi/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440);
-    Video *v1 = new Video("JJ", "/home/mi/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312);
+    Photo *p1 = new Photo("eiffel", "files/eiffel.jpg", 1920, 1440);
+    Video *v1 = new Video("JJ", "files/Twilight-JJLin.mp4", 312);
 
     p1->print(cout);
     p1->play();
@@ -89,10 +89,10 @@ int main() {
     int count = 0;
     Multimedia ** myFiles = new Multimedia *[4];
 
-	myFiles[count++] = new Photo("eiffel", "~/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440);
-	myFiles[count++] = new Photo("telecom", "~/workspace/INF224_TP1/files/logo.png", 113, 113);
-	myFiles[count++] = new Video("rose", "~/workspace/INF224_TP1/files/TheRose-Westlife.mp4", 212);
-	myFiles[count++] = new Video("jj", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312);
+	myFiles[count++] = new Photo("eiffel", "files/eiffel.jpg", 1920, 1440);
+	myFiles[count++] = new Photo("telecom", "files/logo.png", 113, 113);
+	myFiles[count++] = new Video("rose", "files/TheRose-Westlife.mp4", 212);
+	myFiles[count++] = new Video("jj", "files/Twilight-JJLin.mp4", 312);
 
     for(int i = 0; i < count; i++) {
         myFiles[i]->print(cout);
@@ -115,7 +115,7 @@ int main() {
 int main() {
     cout << "Test for class Film:" << endl;
 	int *durations = new int[4]{12, 50, 100, 150};
-	Film *f1 = new Film("Twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+	Film *f1 = new Film("Twilight", "files/Twilight-JJLin.mp4", 312, durations, 4);
 
 	f1->print(cout);
     cout << "Test for function setDurations:" << endl;
@@ -150,7 +150,7 @@ int main() {
 int main() {
     cout << "Test for the memory leak and copy issues:" << endl;
 	int *durations = new int[4]{12, 50, 100, 150};
-	Film *f1 = new Film("Twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+	Film *f1 = new Film("Twilight", "files/Twilight-JJLin.mp4", 312, durations, 4);
     delete []durations;
     durations = NULL;
 
@@ -181,12 +181,12 @@ int main() {
     int count = 0;
     Multimedia ** myFiles = new Multimedia *[5];
 
-    myFiles[count++] = new Photo("eiffel", "~/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440);
-    myFiles[count++] = new Photo("telecom", "~/workspace/INF224_TP1/files/logo.png", 113, 113);
-    myFiles[count++] = new Video("rose", "~/workspace/INF224_TP1/files/TheRose-Westlife.mp4", 212);
-    myFiles[count++] = new Video("jj", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312);
+    myFiles[count++] = new Photo("eiffel", "files/eiffel.jpg", 1920, 1440);
+    myFiles[count++] = new Photo("telecom", "files/logo.png", 113, 113);
+    myFiles[count++] = new Video("rose", "files/TheRose-Westlife.mp4", 212);
+    myFiles[count++] = new Video("jj", "files/Twilight-JJLin.mp4", 312);
 	int *durations = new int[4]{12, 50, 100, 150};
-	myFiles[count++] = new Film("Twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+	myFiles[count++] = new Film("Twilight", "files/Twilight-JJLin.mp4", 312, durations, 4);
     delete []durations;
     durations = NULL;
 
@@ -234,12 +234,12 @@ int main() {
     int count = 0;
     MultimediaPtr *myFiles = new MultimediaPtr[5];
 
-    myFiles[count++] = MultimediaPtr(new Photo("eiffel", "~/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440));
-    myFiles[count++] = MultimediaPtr(new Photo("telecom", "~/workspace/INF224_TP1/files/logo.png", 113, 113));
-    myFiles[count++] = MultimediaPtr(new Video("rose", "~/workspace/INF224_TP1/files/TheRose-Westlife.mp4", 212));
-    myFiles[count++] = MultimediaPtr(new Video("jj", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312));
+    myFiles[count++] = MultimediaPtr(new Photo("eiffel", "files/eiffel.jpg", 1920, 1440));
+    myFiles[count++] = MultimediaPtr(new Photo("telecom", "files/logo.png", 113, 113));
+    myFiles[count++] = MultimediaPtr(new Video("rose", "files/TheRose-Westlife.mp4", 212));
+    myFiles[count++] = MultimediaPtr(new Video("jj", "files/Twilight-JJLin.mp4", 312));
 	int *durations = new int[4]{12, 50, 100, 150};
-	myFiles[count++] = MultimediaPtr(new Film("Twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4));
+	myFiles[count++] = MultimediaPtr(new Film("Twilight", "files/Twilight-JJLin.mp4", 312, durations, 4));
     delete []durations;
     durations = NULL;
 
@@ -294,12 +294,12 @@ int main() {
     cout << "Test for MyBase:" << endl;
     cout << "Creating test data base..." << endl;
     shared_ptr<MyBase> myBase(new MyBase());
-    myBase->createPhoto("eiffel", "~/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440);
-    myBase->createPhoto("telecom", "~/workspace/INF224_TP1/files/logo.png", 113, 113);
-    myBase->createVideo("rose", "~/workspace/INF224_TP1/files/TheRose-Westlife.mp4", 212);
-    myBase->createVideo("jj", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312);
+    myBase->createPhoto("eiffel", "files/eiffel.jpg", 1920, 1440);
+    myBase->createPhoto("telecom", "files/logo.png", 113, 113);
+    myBase->createVideo("rose", "files/TheRose-Westlife.mp4", 212);
+    myBase->createVideo("jj", "files/Twilight-JJLin.mp4", 312);
     int *durations = new int[4]{12, 50, 100, 150};
-    myBase->createFilm("twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+    myBase->createFilm("twilight", "files/Twilight-JJLin.mp4", 312, durations, 4);
     delete []durations;
     durations = NULL;
 
@@ -346,12 +346,12 @@ int main(int argc, char* argv[]) {
     shared_ptr<MyBase> base(new MyBase());
 
     cout << "Creating test data base..." << endl;
-    base->createPhoto("eiffel", "~/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440);
-    base->createPhoto("telecom", "~/workspace/INF224_TP1/files/logo.png", 113, 113);
-    base->createVideo("rose", "~/workspace/INF224_TP1/files/TheRose-Westlife.mp4", 212);
-    base->createVideo("jj", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312);
+    base->createPhoto("eiffel", "files/eiffel.jpg", 1920, 1440);
+    base->createPhoto("telecom", "files/logo.png", 113, 113);
+    base->createVideo("rose", "files/TheRose-Westlife.mp4", 212);
+    base->createVideo("jj", "files/Twilight-JJLin.mp4", 312);
     int *durations = new int[4]{12, 50, 100, 150};
-    base->createFilm("twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+    base->createFilm("twilight", "files/Twilight-JJLin.mp4", 312, durations, 4);
     delete []durations;
     durations = NULL;
 
@@ -392,12 +392,12 @@ int main() {
     cout << "Test for file interaction:" << endl;
     cout << "Creating test data base..." << endl;
     shared_ptr<MyBase> myBase(new MyBase());
-    myBase->createPhoto("eiffel", "~/workspace/INF224_TP1/files/eiffel.jpg", 1920, 1440);
-    myBase->createPhoto("telecom", "~/workspace/INF224_TP1/files/logo.png", 113, 113);
-    myBase->createVideo("rose", "~/workspace/INF224_TP1/files/TheRose-Westlife.mp4", 212);
-    myBase->createVideo("jj", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312);
+    myBase->createPhoto("eiffel", "files/eiffel.jpg", 1920, 1440);
+    myBase->createPhoto("telecom", "files/logo.png", 113, 113);
+    myBase->createVideo("rose", "files/TheRose-Westlife.mp4", 212);
+    myBase->createVideo("jj", "files/Twilight-JJLin.mp4", 312);
     int *durations = new int[4]{12, 50, 100, 150};
-    myBase->createFilm("twilight", "~/workspace/INF224_TP1/files/Twilight-JJLin.mp4", 312, durations, 4);
+    myBase->createFilm("twilight", "files/Twilight-JJLin.mp4", 312, durations, 4);
     delete []durations;
     durations = NULL;
 

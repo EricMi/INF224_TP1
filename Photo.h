@@ -46,7 +46,17 @@ protected:
 
 	// function: play the photo.
 	void play() const override {
-		string command = "eog " + this->getFileName() + " &";
+		string command;
+		#ifdef __APPLE__
+			command = "open ";
+		#elif __linux__
+			command = "eog ";
+		#elif __unix__
+			command = "imagej "
+		#else
+		    cerr << "--->Error: unknown compiler."
+		#endif
+		command += this->getFileName() + " &";
 		system(command.c_str());
 	};
 

@@ -34,7 +34,17 @@ protected:
 
 	// function: play the video.
 	void play() const override {
-		string command = "xdg-open " + this->getFileName() + " &";
+		string command;
+		#ifdef __APPLE__
+			command = "open ";
+		#elif __linux__
+			command = "xdg-open ";
+		#elif __unix__
+			command = "mpv "
+		#else
+		    cerr << "--->Error: unknown compiler."
+		#endif
+		command += this->getFileName() + " &";
 		system(command.c_str());
 	};
 
