@@ -40,8 +40,8 @@ typedef map<string, GroupPtr> GroupMap;
  */
 class MyBase {
 private:
-    MultimediaMap multimedia;
-    GroupMap group;
+    MultimediaMap multimedia; /**Le map des objets multimédia.*/
+    GroupMap group; /**Le map des groupes.*/
 public:
     // Constructor
     MyBase();

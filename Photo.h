@@ -25,8 +25,8 @@ class Photo : public Multimedia {
 	friend class MyBase;
 	friend class Group;
 private:
-	int width = 0;
-	int height = 0;
+	int width = 0; /**La largeur de la photo.*/
+	int height = 0; /**La longeur de la photo.*/
 protected:
 	// constructor
 	Photo(string n = "", string f = "", int w = 0, int h = 0) : Multimedia(n, f) {

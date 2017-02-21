@@ -25,8 +25,8 @@ class Film : public Video {
     friend class MyBase;
     friend class Group;
 private:
-    int *arrDurations = NULL;
-    int numDurations = 0;
+    int *arrDurations = NULL; /**Le pointeur pointant sur un tableau des durées.*/
+    int numDurations = 0; /**Le nombre de chapitres.*/
 protected:
     // Constructor
     Film(string name = "", string fileName = "", int duration = 0, const int *ptrDurations = NULL, int numDurations = 0);

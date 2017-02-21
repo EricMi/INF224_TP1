@@ -28,7 +28,7 @@ typedef shared_ptr<Multimedia> MultimediaPtr;
 class Group : public list<MultimediaPtr> {
     friend class MyBase;
 private:
-    string name = "";
+    string name = ""; /**Le nom de groupe.*/
 protected:
     // Constructor
     Group(string n = "") : list() {

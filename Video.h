@@ -26,7 +26,7 @@ class Video : public Multimedia {
 	friend class MyBase;
 	friend class Group;
 private:
-	int duration = 0;
+	int duration = 0; /**La durée de la vidéo.*/
 protected:
 	// constructor
 	Video(string n = "", string f = "", int d = 0) : Multimedia(n, f) {

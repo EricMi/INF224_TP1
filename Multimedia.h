@@ -25,8 +25,8 @@ class Multimedia {
 	friend class MyBase;
 	friend class Group;
 private:
-	string name = "";
-	string fileName = "";
+	string name = "";  /**Le nom d'objet.*/
+	string fileName = ""; /**Le chemin du fichier.*/
 protected:
 	// Constructors
 	Multimedia();
