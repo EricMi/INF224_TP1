@@ -19,6 +19,12 @@ using namespace std;
 typedef shared_ptr<Multimedia> MultimediaPtr;
 
 //class Group : public list<Multimedia*> {
+/**
+ * @class Group header-file Group.h
+ * @brief
+ * La class est une list de smart pointeur de Multimedia.
+ * @see Multimedia
+ */
 class Group : public list<MultimediaPtr> {
     friend class MyBase;
 private:

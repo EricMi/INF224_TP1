@@ -14,6 +14,13 @@
 #include "Video.h"
 using namespace std;
 
+/**
+ * @class Film header-file Film.h
+ * @brief
+ * La class Film dérivant de Video.
+ * Ses objets sont des films.
+ * @see Video, Multimedia
+ */
 class Film : public Video {
     friend class MyBase;
     friend class Group;

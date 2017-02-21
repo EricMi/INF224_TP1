@@ -31,6 +31,13 @@ typedef shared_ptr<Group> GroupPtr;
 typedef map<string, MultimediaPtr> MultimediaMap;
 typedef map<string, GroupPtr> GroupMap;
 
+/**
+ * @class MyBase header-file MyBase.h
+ * @brief
+ * La class réalise un "set-up box", qui répond les requêtes des clients.
+ * Ells contient deux map, un des pointeurs d'objets Multimedia, un des pointeurs des groupes.
+ * @see Multimedia, Group
+ */
 class MyBase {
 private:
     MultimediaMap multimedia;

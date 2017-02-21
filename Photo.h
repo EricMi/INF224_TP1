@@ -14,6 +14,13 @@
 #include "Multimedia.h"
 using namespace std;
 
+/**
+ * @class Photo header-file Photo.h
+ * @brief
+ * La class Photo dérivant de Multimedia.
+ * Ses objets sont des photos.
+ * @see Multimedia
+ */
 class Photo : public Multimedia {
 	friend class MyBase;
 	friend class Group;

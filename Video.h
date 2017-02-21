@@ -15,6 +15,13 @@
 #include <string>
 using namespace std;
 
+/**
+ * @class Video header-file Video.h
+ * @brief
+ * La class Video dérivant de Multimedia.
+ * Ses objets sont des vidéos.
+ * @see Multimedia
+ */
 class Video : public Multimedia {
 	friend class MyBase;
 	friend class Group;

@@ -16,6 +16,11 @@
 #include <iostream>
 using namespace std;
 
+/**
+ * @class Multimedia header-file Multimedia.h
+ * @brief
+ * La class de base qui est une class abstraite.
+ */
 class Multimedia {
 	friend class MyBase;
 	friend class Group;
