@@ -1,4 +1,5 @@
 #include "Multimedia.h"
+#include <ctype.h>
 using namespace std;
 
 Multimedia::Multimedia() {
@@ -22,6 +23,12 @@ string Multimedia::getName() const {
 }
 
 void Multimedia::setName(string n) {
+
+	for(char& c : n) {
+		if(!isalnum(c)) {
+			throw std::invalid_argument( "--->Error: the name contain illegal character.");
+		}
+	}
 	this->name = n;
 }
 
@@ -43,8 +50,11 @@ void Multimedia::write(ostream &os) const {
 }
 
 void Multimedia::read(istream &is) {
-	getline(is, this->name);
-	getline(is, this->fileName);
+	string s;
+	getline(is, s);
+	this->setName(s);
+	getline(is, s);
+	this->setFileName(s);
 }
 
 string Multimedia::className() const {
