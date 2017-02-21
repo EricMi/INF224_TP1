@@ -1,3 +1,13 @@
+//***************************************************************************************
+//
+//! @file main.cpp
+//! Le code de test.
+//!
+//! @author    Pengfei Mi
+//! @date      2016-11
+//
+//***************************************************************************************
+
 #define VERSION_SERVER
 /* Version list:
  * VERSION_BASE: base class Multimedia (Question 2&3)

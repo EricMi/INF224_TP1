@@ -1,3 +1,13 @@
+//***************************************************************************************
+//
+//! @file Group.h
+//! La specification et l'implementation de la class Group dérivant de list<shared_ptr<Multimedia>>.
+//!
+//! @author    Pengfei Mi
+//! @date      2016-12
+//
+//***************************************************************************************
+
 #ifndef GROUP_H
 #define GROUP_H
 

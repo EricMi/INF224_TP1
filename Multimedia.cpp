@@ -1,3 +1,13 @@
+//***************************************************************************************
+//
+//! @file Multimedia.cpp
+//! L'implementation de la class de base Multimedia.
+//!
+//! @author    Pengfei Mi
+//! @date      2016-11
+//
+//***************************************************************************************
+
 #include "Multimedia.h"
 #include <ctype.h>
 using namespace std;

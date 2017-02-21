@@ -1,3 +1,13 @@
+//***************************************************************************************
+//
+//! @file Video.h
+//! La specification et l'implementation de la class Video dérivant de Multimedia.
+//!
+//! @author    Pengfei Mi
+//! @date      2016-11
+//
+//***************************************************************************************
+
 #ifndef VIDEO_H
 #define VIDEO_H
 

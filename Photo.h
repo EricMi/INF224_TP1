@@ -1,3 +1,13 @@
+//***************************************************************************************
+//
+//! @file Photo.h
+//! La specification et l'implementation de la class Photo dérivant de Multimedia.
+//!
+//! @author    Pengfei Mi
+//! @date      2016-11
+//
+//***************************************************************************************
+
 #ifndef PHOTO_H
 #define PHOTO_H
 

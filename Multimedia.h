@@ -1,3 +1,13 @@
+//***************************************************************************************
+//
+//! @file Multimedia.h
+//! La specification de la class de base Multimedia.
+//!
+//! @author    Pengfei Mi
+//! @date      2016-11
+//
+//***************************************************************************************
+
 #ifndef MULTIMEDIA_H
 #define MULTIMEDIA_H
 
