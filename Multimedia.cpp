@@ -10,6 +10,7 @@
 
 #include "Multimedia.h"
 #include <ctype.h>
+#include <stdexcept>
 using namespace std;
 
 Multimedia::Multimedia() {
@@ -36,7 +37,7 @@ void Multimedia::setName(string n) {
 
 	for(char& c : n) {
 		if(!isalnum(c)) {
-			throw std::invalid_argument( "--->Error: the name contain illegal character.");
+			throw invalid_argument( "--->Error: the name contain illegal character.");
 		}
 	}
 	this->name = n;
