@@ -37,7 +37,8 @@ void Multimedia::setName(string n) {
 
 	for(char& c : n) {
 		if(!isalnum(c)) {
-			throw std::invalid_argument( "--->Error: the name contain illegal character.");
+			//throw std::invalid_argument( "--->Error: the name contain illegal character.");
+			// Got error "'invalid_argument' is not a member of 'std'" on Unix of Telecom, but it works in my Mac, issue not resolved. >.<
 		}
 	}
 	this->name = n;
