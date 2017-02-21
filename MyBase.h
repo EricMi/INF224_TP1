@@ -43,35 +43,79 @@ private:
     MultimediaMap multimedia; /**Le map des objets multimédia.*/
     GroupMap group; /**Le map des groupes.*/
 public:
-    // Constructor
+    /**
+     * @brief Le constructeur.
+     */
     MyBase();
-    // Destructor
+
+    /**
+     * @brief Le destructeur.
+     */
     ~MyBase();
-    // function: create a photo object and add to base
+
+    /**
+     * @brief Méthode pour créer une photo et l'ajouter à la base.
+     */
     MultimediaPtr createPhoto(string name, string fileName = "", int width = 0, int height = 0);
-    // function: create a Video object and add to base
+
+    /**
+     * @brief Méthode pour créer une vidéo et l'ajouter à la base.
+     */
     MultimediaPtr createVideo(string name, string fileName = "", int duration = 0);
-    // function: create a Film object and add to base
+
+    /**
+     * @brief Méthode pour créer un film et l'ajouter à la base.
+     */
     MultimediaPtr createFilm(string name, string fileName = "", int duration = 0, int *ptrDurations = NULL, int numDurations = 0);
-    // function: create a Group object and add to base
+
+    /**
+     * @brief Méthode pour créer un groupe et l'ajouter à la base.
+     */
     GroupPtr createGroup(string name);
-    // function: add a mulimedia object to a group
+
+    /**
+     * @brief Méthode pour ajouter un objet à un groupe donnés par leur noms.
+     */
     void addToGroup(string mName, string pName);
-    // function: print the information of multimedia object or group in terminal by name
+
+    /**
+     * @brief Méthode pour afficher l'information d'un objet ou groupe donné par son nom.
+     */
     void print(string name, ostream &os = cout) const;
-    // function: play a multimedia object by name
+
+    /**
+     * @brief Méthode pour jouer un objet multimédia.
+     */
     bool play(string name) const;
-    // function: delete a multimedia object or group by name
+
+    /**
+     * @brief Méthode pour supprimer un objet ou groupe de la base donné par son nom.
+     */
     void remove(string name);
-    // function: process the request from cliend
+
+    /**
+     * @brief Méthode pour traiter les requêtes.
+     */
     bool processRequest(TCPConnection& cnx, const string& request, string& response);
-    // function: write MyBase into file in text format
+
+    /**
+     * @brief Méthode pour écrire les information des objets dans un ficher.
+     */
     bool save(const string &fileName) const;
-    // function: load MyBase from file in text format
+
+    /**
+     * @brief Méthode pour relire les objets d'un fichier.
+     */
     bool load(const string &fileName);
-    // function: create multimedia object according to class name
+
+    /**
+     * @brief Méthode pour créer un objet par sa class.
+     */
     MultimediaPtr createMultimedia(string className);
-    // function: print the information of all objects
+
+    /**
+     * @brief Méthode pour afficher les information de toute les objets et groupes.
+     */
     void printAll(ostream &os = cout) const;
 };
 
