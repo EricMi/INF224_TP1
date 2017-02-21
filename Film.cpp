@@ -6,19 +6,19 @@ Film::Film(string n, string f, int d, const int *ptrD, int numD) : Video(n, f, d
 }
 
 void Film::setDurations(const int *ptrD, int numD) {
-    if(this->arrDurations) {
-        delete []this->arrDurations;
-        this->arrDurations = NULL;
-    }
-    if(ptrD) {
+    if(numD > 0 && ptrD) {
+        if(this->arrDurations) {
+            delete []this->arrDurations;
+        }
         this->arrDurations = new int[numD];
         for(int i = 0; i < numD; i++) {
             this->arrDurations[i] = ptrD[i];
         }
         this->numDurations = numD;
+    } else if(num <= 0) {
+        cerr << "--->Error: the number of chapters must be positive!" << endl;
     } else {
-        this->arrDurations = NULL;
-        this->numDurations = 0;
+        cerr << "--->Error: the pointer is null!" << endl;
     }
 }
 
