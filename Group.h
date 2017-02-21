@@ -30,7 +30,9 @@ class Group : public list<MultimediaPtr> {
 private:
     string name = ""; /**Le nom de groupe.*/
 protected:
-    // Constructor
+    /**
+     * @brief Le constructeur ayant des paramètres par défaut.
+     */
     Group(string n = "") : list() {
         this->name = n;
     };
@@ -40,7 +42,9 @@ protected:
         return this->name;
     };
 
-    // function: print information of every member of the group
+    /**
+     * @brief Méthode pour afficher l'information.
+     */
     void print(ostream &os) const {
         os << "Group:" << this->name << endl;
         for(Group::const_iterator it = this->begin(); it != this->end(); it++)

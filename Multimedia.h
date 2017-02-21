@@ -28,31 +28,66 @@ private:
 	string name = "";  /**Le nom d'objet.*/
 	string fileName = ""; /**Le chemin du fichier.*/
 protected:
-	// Constructors
+	/**
+	 * @brief Constructeur sans arguments.
+	 */
 	Multimedia();
+
+	/**
+	 * @brief Constructeur avec arguments.
+	 */
 	Multimedia(string name, string fileName);
-	// function: get name of object.
+
+	/**
+	 * @brief Accesseur du nom.
+	 */
 	string getName() const;
-	// function: set name of object.
+
+	/**
+	 * @brief Modifieur du nom.
+	 */
 	void setName(string name);
-	// function: get file name.
+
+	/**
+	 * @brief Accesseur du chemin de fichier.
+	 */
 	string getFileName() const;
-	// function: set file name.
+
+	 /**
+	  * @brief Modifieur du chemin de fichier.
+	  */
 	void setFileName(string FileName);
-	// function: print object informations.
+
+	/**
+	 * @brief Méthode virtuelle pour afficher l'information.
+	 */
 	virtual void print(ostream &os) const;
-	// virtural function: play the object.
+
+	/**
+	 * @brief Méthode abstraite pour jouer l'objet multimédia.
+	 */
 	#ifndef VERSION_BASE
 	virtual void play() const = 0;
 	#endif
-	// virtual function: write object to ostream.
+
+	/**
+	 * @brief Méthode virtuelle pour écrire l'information ver flux sortée.
+	 */
 	virtual void write(ostream &os) const;
-	// virtual function: read object from istream.
+
+	/**
+	 * @brief Mérhode virtuelle pour relire l'objet de flux entrée.
+	 */
 	virtual void read(istream &is);
-	// virtual function: return class name.
+
+	/**
+	 * @brief Méthode virtuelle pour retourner le nom de la class.
+	 */
 	virtual string className() const;
 public:
-	// Destructor
+	/**
+	 * @brief Le destructeur.
+	 */
 	virtual ~Multimedia();
 };
 

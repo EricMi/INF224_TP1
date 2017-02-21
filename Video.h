@@ -28,28 +28,38 @@ class Video : public Multimedia {
 private:
 	int duration = 0; /**La durée de la vidéo.*/
 protected:
-	// constructor
+	/**
+     * @brief Le constructeur ayant des paramètres par défaut.
+     */
 	Video(string n = "", string f = "", int d = 0) : Multimedia(n, f) {
 		this->setDuration(d);
 	};
 
-	// function: get the duration of video.
+	/**
+	 * @brief Accesseur de la durée.
+	 */
 	int getDuration() const {
 		return this->duration;
 	};
 
-	// function: set the duration of video.
+	/**
+	 * @brief Modifieur de la durée.
+	 */
 	void setDuration(int d) {
 		this->duration = d;
 	};
 
-	// function: print the information of video.
+	/**
+     * @brief Méthode override pour afficher l'information.
+     */
 	void print(ostream &os) const override {
 		this->Multimedia::print(os);
 		os << "Duration:" << this->getDuration() << endl;
 	};
 
-	// function: play the video.
+	/**
+	 * @brief Méthode override pour jouer la vidéo.
+	 */
 	void play() const override {
 		string command;
 		#ifdef __APPLE__
@@ -65,13 +75,17 @@ protected:
 		system(command.c_str());
 	};
 
-	// virtual function: write object to ostream.
+	/**
+     * @brief Méthode override pour écrire l'information ver flux sortée.
+     */
 	void write(ostream &os) const override {
 		Multimedia::write(os);
 		os << this->getDuration() << '\n';
 	};
 
-	// virtual function: read object from istream.
+	/**
+	 * @brief Mérhode override pour relire l'objet de flux entrée.
+	 */
 	void read(istream &is) override {
 		this->Multimedia::read(is);
 		string s;
@@ -79,7 +93,9 @@ protected:
 		this->setDuration(stoi(s));
 	};
 
-	// virtual function: return class name.
+	/**
+	 * @brief Méthode override pour retourner le nom de la class.
+	 */
 	string className() const override {
 		return "Video";
 	};

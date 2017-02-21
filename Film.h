@@ -28,28 +28,59 @@ private:
     int *arrDurations = NULL; /**Le pointeur pointant sur un tableau des durées.*/
     int numDurations = 0; /**Le nombre de chapitres.*/
 protected:
-    // Constructor
+    /**
+     * @brief Le constructeur ayant des paramètres par défaut.
+     */
     Film(string name = "", string fileName = "", int duration = 0, const int *ptrDurations = NULL, int numDurations = 0);
-    // function: set durations
+
+    /**
+     * @brief Modifieur du tableau des durées.
+     */
     void setDurations(const int *ptrDurations, int numDurations);
-    // function: get durations
+
+    /**
+     * @brief Modifieur du nombre des durées.
+     */
     const int * getDurations() const;
-    // function: get number of durations
+
+    /**
+     * @brief Accesseur des durées des chapitres.
+     */
     int getNumDurations() const;
-    // function: get number of durations
+
+    /**
+     * @brief Méthode override pour afficher l'information.
+     */
     void print(ostream &os) const override;
-    // Constructor by copy
+
+    /**
+     * @brief Constructeur par copie.
+     */
     Film(const Film& from);
-    // overload operator '='
+
+    /**
+     * @brief L'operateur d'égalité.
+     */
     Film& operator=(const Film& from);
-    // virtual function: write object to ostream.
+
+    /**
+     * @brief Méthode override pour écrire l'information ver flux sortée.
+     */
     void write(ostream &os) const override;
-    // virtual function: read object from istream.
+
+    /**
+	 * @brief Mérhode override pour relire l'objet de flux entrée.
+	 */
     void read(istream &is) override;
-	// virtual function: return class name.
+
+    /**
+	 * @brief Méthode override pour retourner le nom de la class.
+	 */
 	string className() const override;
 public:
-    // Destructor
+    /**
+	 * @brief Le destructeur.
+	 */
     ~Film();
 };
 

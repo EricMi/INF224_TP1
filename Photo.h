@@ -28,40 +28,54 @@ private:
 	int width = 0; /**La largeur de la photo.*/
 	int height = 0; /**La longeur de la photo.*/
 protected:
-	// constructor
+	/**
+     * @brief Le constructeur ayant des paramètres par défaut.
+     */
 	Photo(string n = "", string f = "", int w = 0, int h = 0) : Multimedia(n, f) {
 		this->setWidth(w);
 		this->setHeight(h);
 	};
 
-	// function: get the width of photo.
+	/**
+	 * @brief Accesseur de la largeur.
+	 */
 	int getWidth() const {
 		return this->width;
 	};
 
-	// function: set the width of photo.
+	/**
+	 * @brief Modifieur de la largeur.
+	 */
 	void setWidth(int w) {
 		this->width = w;
 	};
 
-	// function: get the height of photo.
+	/**
+	 * @brief Accesseur de la longeur.
+	 */
 	int getHeight() const {
 		return this->height;
 	};
 
-	// function: set the height of photo.
+	/**
+	 * @brief Modifieur de la longeur.
+	 */
 	void setHeight(int h) {
 		this->height = h;
 	};
 
-	// function: print the information of photo.
+	/**
+     * @brief Méthode override pour afficher l'information.
+     */
 	void print(ostream &os) const override {
 		this->Multimedia::print(os);
 		os << "Width:" << this->getWidth() << '\n'
 			<< "Height:" << this->getHeight() << endl;
 	};
 
-	// function: play the photo.
+	/**
+	 * @brief Méthode override pour jouer la Photo.
+	 */
 	void play() const override {
 		string command;
 		#ifdef __APPLE__
@@ -77,13 +91,17 @@ protected:
 		system(command.c_str());
 	};
 
-	// virtual function: write object to ostream.
+	/**
+     * @brief Méthode override pour écrire l'information ver flux sortée.
+     */
 	void write(ostream &os) const override {
 		Multimedia::write(os);
 		os << this->getWidth() << '\n' << this->getHeight() << '\n';
 	};
 
-	// virtual function: read object from istream.
+	/**
+	 * @brief Mérhode override pour relire l'objet de flux entrée.
+	 */
 	void read(istream &is) override {
 		this->Multimedia::read(is);
 		string s;
@@ -93,7 +111,9 @@ protected:
 		this->setHeight(stoi(s));
 	};
 
-	// virtual function: return class name.
+	/**
+	 * @brief Méthode override pour retourner le nom de la class.
+	 */
 	string className() const override {
 		return "Photo";
 	};
