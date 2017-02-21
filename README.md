@@ -26,6 +26,17 @@ _20/02/2017_
 - Fonctions réalisées:
  - Deux classes: **Photo** et **Video**.
  - Les constructeurs,
+ - Les accesseurs,
+ - Les modifieurs,
+ - Les méthodes d'affichage,
+ - Les méthodes de jouer l'objet: on utilise les variables prédéfinis pour **identifier les systèmes d'exploitation**
+ - Réponses aux questions:
+  - On utilise la class abstraite.
+  - Une class abstraite doit avoir au moins une méthode abstraite dont la déclaration se termine par **= 0**.
+  - Il ne sera plus possible d'instancer des objets de la class de base, parce que la class abstraite n'est pas instanciable.
+
+#### 5e Etape: Traitement générique (en utilisant le polymorphism)
+- Fichier corrélatif: _main.cpp_.
 - Test label: _VERSION_POLYMORPHISM_.
 - Réponse aux questions:
  - C'est le polymorphism qui permet de faire cela.
@@ -93,26 +104,15 @@ _20/02/2017_
 - Test label: _VERSION_SERVER_.
 - Fonctions réalisées:
  - Dans la class _MyBase_, on réalise une fonction **processRequest()** pour traiter les requêtes.
- - command **PRINT** pour rechercher un objet multimedia et afficher ses attributs
- - Les accesseurs,
- - Les modifieurs,
- - Les méthodes d'affichage,
- - Les méthodes de jouer l'objet: on utilise les variables prédéfinis pour **identifier les systèmes d'exploitation**
- - Réponses aux questions:
-  - On utilise la class abstraite.
-  - Une class abstraite doit avoir au moins une méthode abstraite dont la déclaration se termine par **= 0**.
-  - Il ne sera plus possible d'instancer des objets de la class de base, parce que la class abstraite n'est pas instanciable.
-
-#### 5e Etape: Traitement générique (en utilisant le polymorphism)
-- Fichier corrélatif: _main.cpp_.
+ - command **PRINT** pour rechercher un objet multimedia et afficher ses attributs:
  ```
  PRINT <nom d'objet ou groupe>
  ```
- - command **PLAY** pour jouer un objet multimedia sur la serveur
+ - command **PLAY** pour jouer un objet multimedia sur la serveur:
  ```
  PLAY <nom d'objet>
  ```
-            
+
 #### 12e Etape: Sérialisation / désérialisation
 - Fichier corrélatifs: _MyBase.h_, _MyBase.cpp_, _Multimedia.h_, _Multimedia.cpp_, _Photo.h_, _Video.h_, _Film.h_, _Film.cpp_, _Group.h_.
 - Test label: _VERSION_SERALISATION_.
@@ -120,7 +120,7 @@ _20/02/2017_
  - Dans la class _MyBase_, on définit deux méthodes **save** et **load** pour sauvegarder et relire la table d'objets.
  - Dans les class _Multimedia_, _Photo_, _Video_, _Film_, on définit deux méthodes **write** et **read** pour sauvagarder et relire leur attributs.
  - Dans les class, on définit aussi une méthode **chassName** pour obtenir leur nom de class.
-        
+
 #### 13e Etape: Traitement des erreurs
 - Fichier corrélatifs: _MyBase.cpp_, _MyBase.h_.
 - Fonctions réalisées:
@@ -134,8 +134,8 @@ _20/02/2017_
  0123456789
  ```
  - Quand on modifie le tableau de durées d'un Film ayant une taille nulle ou inférieure à zéro, on throw une exception de type **_std::invalid_argument_**.
-            
-        
+
+
 
 ### 2. Client (en Java/Swing)
 #### class _MainWindow_
