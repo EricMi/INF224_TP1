@@ -37,7 +37,7 @@ void Multimedia::setName(string n) {
 
 	for(char& c : n) {
 		if(!isalnum(c)) {
-			throw invalid_argument( "--->Error: the name contain illegal character.");
+			throw std::invalid_argument( "--->Error: the name contain illegal character.");
 		}
 	}
 	this->name = n;

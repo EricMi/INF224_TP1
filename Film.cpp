@@ -27,10 +27,10 @@ void Film::setDurations(const int *ptrD, int numD) {
         this->numDurations = numD;
     } else if(numD <= 0) {
         cerr << "--->Error: the number of chapters must be positive!" << endl;
-    	throw invalid_argument("--->Error: the number of chapters must be positive!");
+    	throw std::invalid_argument("--->Error: the number of chapters must be positive!");
     } else {
         cerr << "--->Error: the pointer is null!" << endl;
-        throw invalid_argument("--->Error: the pointer is null!");
+        throw std::invalid_argument("--->Error: the pointer is null!");
     }
 }
 
