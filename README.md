@@ -1,5 +1,4 @@
-# My Multimedia Base
-### --INF224 Travaux Pratiques
+# Multimedia Base Prototype
 _Pengfei Mi_
 _20/02/2017_
 
